@@ -60,8 +60,6 @@
     
     NSArray*valuesForKey = [self.dictionary valueForKey:keys[indexPath.section]];
 
-    NSLog(@"# values > %@", valuesForKey);
-
     cell.textLabel.text = valuesForKey[indexPath.row];
     return cell;
 }
