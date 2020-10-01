@@ -31,27 +31,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self populateDictionary];
-    [self.mainTableView reloadData];
-    // Do any additional setup after loading the view.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    NSLog(@"# sections > %lu", [[self.dictionary allKeys] count]);
     return [[self.dictionary allKeys] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int count = 2;
+    int count;
     NSArray*keys = [self.dictionary allKeys];
     count = (int)[[self.dictionary valueForKey:keys[section]]count];
-    NSLog(@"# sections >  - %d", count);
-//
     return count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray*keys = [self.dictionary allKeys];
-    
     return [[NSString alloc] initWithFormat: @"%@", keys[section]];
 }
 
@@ -62,6 +56,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifer];
     }
     
+    NSArray*keys = [self.dictionary allKeys];
+    
+    NSArray*valuesForKey = [self.dictionary valueForKey:keys[indexPath.section]];
+
+    NSLog(@"# values > %@", valuesForKey);
+
+    cell.textLabel.text = valuesForKey[indexPath.row];
     return cell;
 }
 
